@@ -88,13 +88,13 @@
                 </div>
                 
                 <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
-                    <!-- New Button: Download -->
-                    <a href="#" target="_blank" class="bg-white/20 border border-white/50 text-white px-5 py-2 rounded-full font-bold hover:bg-white/30 transition shadow-md flex items-center justify-center text-sm backdrop-blur-sm whitespace-nowrap">
+                    <!-- Updated Button: Download -->
+                    <a href="https://www.aksorn.com/storage/upload/files/2020/%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B8%AD%E0%B8%A2%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B8%AA%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%AF/%E0%B8%A1%E0%B8%B1%E0%B8%98%E0%B8%A2%E0%B8%A1/%E0%B9%81%E0%B8%99%E0%B8%A7%E0%B8%97%E0%B8%B2%E0%B8%87%E0%B8%AF%20%E0%B8%84%E0%B8%93%E0%B8%B4%E0%B8%95%E0%B8%A8%E0%B8%B2%E0%B8%AA%E0%B8%95%E0%B8%A3%E0%B9%8C%20(%E0%B9%80%E0%B8%9E%E0%B8%B4%E0%B9%88%E0%B8%A1%E0%B9%80%E0%B8%95%E0%B8%B4%E0%B8%A1)%20%E0%B8%A1.5%E0%B9%81%E0%B8%9C%E0%B8%99%E0%B8%AF.pdf" target="_blank" class="bg-white/20 border border-white/50 text-white px-5 py-2 rounded-full font-bold hover:bg-white/30 transition shadow-md flex items-center justify-center text-sm backdrop-blur-sm whitespace-nowrap">
                         <i class="fa-brands fa-google-drive mr-2"></i> ดาวน์โหลดแผนฯ
                     </a>
                     
-                    <!-- Existing Button: Open App -->
-                    <a href="#" target="_blank" class="bg-white text-green-700 px-6 py-2 rounded-full font-bold hover:bg-green-50 transition shadow-md transform hover:scale-105 flex items-center justify-center whitespace-nowrap">
+                    <!-- Updated Button: Open App -->
+                    <a href="https://noonsupanuch-web.github.io/Plan1Math5/" target="_blank" class="bg-white text-green-700 px-6 py-2 rounded-full font-bold hover:bg-green-50 transition shadow-md transform hover:scale-105 flex items-center justify-center whitespace-nowrap">
                         <i class="fa-solid fa-play mr-2"></i> เปิดใช้งาน App
                     </a>
                 </div>
@@ -609,6 +609,14 @@
                 }
             });
         }
+        
+        // ดึงข้อมูลสรุปผลการนิเทศอัตโนมัติเมื่อหน้าเว็บโหลดเสร็จ
+        document.addEventListener('DOMContentLoaded', function() {
+            // รอให้หน้าเว็บโหลดเสร็จก่อนดึงข้อมูล
+            setTimeout(() => {
+                // fetchSupervisionSummary(false); // ปิดส่วนนี้ไว้เพราะตอนนี้มีระบบล็อคดูข้อมูลแล้ว
+            }, 500);
+        });
     </script>
 </body>
 </html>
