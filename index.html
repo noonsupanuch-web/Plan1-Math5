@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แผนการจัดการเรียนรู้ดิจิทัล: ความน่าจะเป็น (Probability)</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600;700&family=Sarabun:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- SweetAlert2 (Popup สวยๆ) -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+        body { font-family: 'Sarabun', sans-serif; background-color: #f3f4f6; }
+        h1, h2, h3, h4, h5, h6, .font-prompt { font-family: 'Prompt', sans-serif; }
+        .math-display { overflow-x: auto; overflow-y: hidden; }
+    </style>
+</head>
+<body class="text-gray-800 pb-20">
+
+    <!-- Navbar -->
+    <nav class="bg-green-800 text-white p-4 shadow-md sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <i class="fa-solid fa-dice text-2xl text-yellow-400"></i>
+                <div>
+                    <span class="font-bold text-lg font-prompt block leading-tight">Digital Lesson Plan</span>
+                    <span class="text-xs text-green-200">Active Learning & Technology Integration</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto max-w-5xl p-4 md:p-8 my-6 bg-white shadow-xl rounded-xl border border-gray-200">
+        
+        <!-- Header: School & Teacher Info -->
+        <header class="border-b-4 border-green-600 pb-6 mb-8">
+            <div class="flex flex-col md:flex-row justify-between items-start gap-6">
+                <div class="flex-1">
+                    <h5 class="text-green-600 font-bold uppercase tracking-wide text-sm mb-1">กลุ่มสาระการเรียนรู้คณิตศาสตร์</h5>
+                    <h1 class="text-3xl md:text-4xl font-bold text-gray-900 font-prompt">โรงเรียนห้องสอนศึกษาในพระอุปถัมภ์ฯ</h1>
+                    <div class="mt-4 space-y-1">
+                        <h2 class="text-2xl font-bold text-gray-800">เรื่อง ความน่าจะเป็น</h2>
+                        <h3 class="text-lg text-gray-500 font-light">(Probability)</h3>
+                    </div>
+                </div>
+                
+                <div class="bg-green-50 p-5 rounded-xl border border-green-100 min-w-[280px] shadow-sm">
+                    <div class="flex items-center gap-3 mb-2 border-b border-green-200 pb-2">
+                        <div class="bg-green-600 text-white w-8 h-8 rounded-full flex items-center justify-center"><i class="fa-solid fa-user-tie"></i></div>
+                        <div>
+                            <p class="text-xs text-gray-500">ครูผู้สอน</p>
+                            <p class="font-bold text-green-900">นางสาวศุภนุช มะณีศรี</p>
+                        </div>
+                    </div>
+                    <div class="space-y-2 text-sm text-gray-700">
+                        <p class="flex justify-between"><span><i class="fa-solid fa-book mr-2 text-green-500"></i>วิชา:</span> <span class="font-bold">คณิตศาสตร์เพิ่มเติม</span></p>
+                        <p class="flex justify-between"><span><i class="fa-solid fa-layer-group mr-2 text-green-500"></i>ชั้น:</span> <span class="font-bold">มัธยมศึกษาปีที่ 5</span></p>
+                        <p class="flex justify-between"><span><i class="fa-solid fa-calendar-alt mr-2 text-green-500"></i>หน่วยการเรียนรู้:</span> <span class="font-bold">20 คาบ</span></p>
+                        <p class="flex justify-between"><span><i class="fa-regular fa-clock mr-2 text-green-500"></i>เวลาในแผนนี้:</span> <span class="font-bold">2 คาบ (100 นาที)</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Innovation Link & Download Button -->
+            <div class="mt-6 p-4 bg-gradient-to-r from-emerald-600 to-green-700 rounded-lg text-white shadow-lg flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-4">
+                    <div class="bg-white/20 p-3 rounded-full backdrop-blur-sm">
+                        <i class="fa-solid fa-laptop-code text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg font-prompt">สื่อการสอนนวัตกรรม (Web Application)</h3>
+                        <p class="text-green-100 text-sm">ProbMaster: The Risk of Chance (ระบบสุ่มและทดสอบความน่าจะเป็น)</p>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+                    <!-- New Button: Download -->
+                    <a href="#" target="_blank" class="bg-white/20 border border-white/50 text-white px-5 py-2 rounded-full font-bold hover:bg-white/30 transition shadow-md flex items-center justify-center text-sm backdrop-blur-sm whitespace-nowrap">
+                        <i class="fa-brands fa-google-drive mr-2"></i> ดาวน์โหลดแผนฯ
+                    </a>
+                    
+                    <!-- Existing Button: Open App -->
+                    <a href="#" target="_blank" class="bg-white text-green-700 px-6 py-2 rounded-full font-bold hover:bg-green-50 transition shadow-md transform hover:scale-105 flex items-center justify-center whitespace-nowrap">
+                        <i class="fa-solid fa-play mr-2"></i> เปิดใช้งาน App
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- Left Column: Info & Standards -->
+            <div class="lg:col-span-1 space-y-6">
+                <!-- Learning Outcomes -->
+                <div class="bg-emerald-50 p-5 rounded-lg border-l-4 border-emerald-500 shadow-sm">
+                    <h3 class="font-bold text-lg text-emerald-800 mb-3 font-prompt">
+                        <i class="fa-solid fa-scroll mr-2"></i> ผลการเรียนรู้
+                    </h3>
+                    <p class="text-sm text-gray-700 leading-relaxed text-justify">
+                        "หาความน่าจะเป็นของเหตุการณ์ที่กำหนดให้ และ<b>นำความรู้เรื่องความน่าจะเป็นไปใช้แก้ปัญหา พร้อมทั้งตระหนักถึงความสมเหตุสมผลของคำตอบที่ได้</b>"
+                    </p>
+                </div>
+
+                <!-- Concept & Equations -->
+                <div class="bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+                    <h3 class="font-bold text-lg text-gray-800 mb-3 font-prompt flex items-center">
+                        <i class="fa-solid fa-square-root-variable text-teal-600 mr-2"></i> สมการและนิยามหลัก
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="bg-gray-50 p-3 rounded text-center border border-gray-200">
+                            <span class="text-xs text-gray-500 block mb-1">ความน่าจะเป็นของเหตุการณ์ (P)</span>
+                            <div class="math-display">$$P(E) = \frac{n(E)}{n(S)}$$</div>
+                        </div>
+                        <div class="bg-gray-50 p-3 rounded text-center border border-gray-200">
+                            <span class="text-xs text-gray-500 block mb-1">กฎการจัดหมู่ (นำมาประยุกต์ใช้หา n(S), n(E))</span>
+                            <div class="math-display text-sm">
+                                $$\binom{n}{r} = \frac{n!}{(n-r)!r!}$$
+                            </div>
+                        </div>
+                        <div class="bg-teal-50 p-3 rounded text-center border border-teal-200">
+                            <span class="text-xs text-teal-600 block mb-1">สมบัติที่สำคัญ</span>
+                            <div class="math-display text-sm text-teal-900 font-bold">
+                                $$0 \le P(E) \le 1$$
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Objectives -->
+                <div class="bg-teal-50 p-5 rounded-lg border border-teal-100">
+                    <h3 class="font-bold text-lg text-teal-900 mb-3 font-prompt">
+                        <i class="fa-solid fa-bullseye mr-2"></i> จุดประสงค์ (KPA)
+                    </h3>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex gap-2">
+                            <span class="badge bg-teal-200 text-teal-800 px-2 rounded font-bold">K</span>
+                            <span>อธิบายหลักการหาปริภูมิตัวอย่าง (Sample Space) และเหตุการณ์ (Event) ได้ถูกต้อง</span>
+                        </li>
+                        <li class="flex gap-2">
+                            <span class="badge bg-green-200 text-green-800 px-2 rounded font-bold">P</span>
+                            <span>คำนวณหาความน่าจะเป็นของเหตุการณ์จากสถานการณ์ปัญหาที่กำหนดให้ได้อย่างถูกต้อง</span>
+                        </li>
+                        <li class="flex gap-2">
+                            <span class="badge bg-emerald-200 text-emerald-800 px-2 rounded font-bold">A</span>
+                            <span>มีความรับผิดชอบต่องาน และมีส่วนร่วมในการทำงานกลุ่ม (STAD) อย่างกระตือรือร้น</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Right Column: 5E Process -->
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-xl border border-gray-200 shadow-lg overflow-hidden">
+                    <div class="bg-gray-50 p-4 border-b border-gray-200 flex justify-between items-center">
+                        <h3 class="font-bold text-xl text-green-700 font-prompt">
+                            <i class="fa-solid fa-chalkboard-teacher mr-2"></i> กิจกรรมการเรียนรู้ (5E + STAD)
+                        </h3>
+                    </div>
+
+                    <div class="p-6 space-y-6">
+                        
+                        <!-- Step 1 -->
+                        <div class="relative pl-8 border-l-2 border-green-200">
+                            <div class="absolute -left-[17px] top-0 bg-green-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">1</div>
+                            <h4 class="font-bold text-gray-800 font-prompt text-lg">ขั้นสร้างความสนใจ (Engagement) <span class="text-xs bg-gray-200 px-2 py-1 rounded ml-2 text-gray-600">10 นาที</span></h4>
+                            <div class="mt-2 text-gray-600 text-sm space-y-2">
+                                <p>• <b>Stimulus:</b> ครูเปิดบอร์ดเกมกระดานตะปู (Plinko) จากโปรแกรม PhET Simulation แสดงการตกของลูกบอลแบบสุ่มลงในช่องต่างๆ</p>
+                                
+                                <div class="mt-3 mb-3">
+                                    <div class="bg-green-50 border border-green-200 rounded-lg p-3">
+                                        <p class="text-sm font-bold text-green-800 mb-2"><i class="fa-solid fa-vr-cardboard mr-2"></i>สื่อประกอบ: PhET Simulation (Plinko Probability)</p>
+                                        <!-- Fixed PhET Display -->
+                                        <div class="relative w-full aspect-video rounded-lg overflow-hidden shadow-sm bg-black">
+                                            <iframe 
+                                                src="https://phet.colorado.edu/sims/html/plinko-probability/latest/plinko-probability_en.html" 
+                                                class="absolute top-0 left-0 w-full h-full border-0" 
+                                                allow="fullscreen; accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                allowfullscreen>
+                                            </iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <p>• <b>Discussion:</b> ครูตั้งคำถามท้าทาย "นักเรียนคิดว่าช่องไหนที่ลูกบอลมีโอกาสตกลงไปมากที่สุด? และเราจะคำนวณโอกาสนั้นออกมาเป็นตัวเลขได้อย่างไร?"</p>
+                                <p>• <b>Onboarding:</b> นักเรียนนำโทรศัพท์มือถือเข้าสู่นวัตกรรม "ProbMaster: The Risk of Chance"</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div class="relative pl-8 border-l-2 border-green-200">
+                            <div class="absolute -left-[17px] top-0 bg-green-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">2</div>
+                            <h4 class="font-bold text-gray-800 font-prompt text-lg">ขั้นสำรวจและค้นหา (Exploration) <span class="text-xs bg-gray-200 px-2 py-1 rounded ml-2 text-gray-600">30 นาที</span></h4>
+                            <div class="mt-2 text-gray-600 text-sm space-y-2">
+                                <span class="inline-block bg-teal-100 text-teal-700 text-xs px-2 py-1 rounded font-bold mb-1">[STAD Phase: Teams] กิจกรรม: The Probability Quest (ภารกิจสุ่มเสี่ยง)</span>
+                                <p>• <b>Group Formation:</b> ครูแบ่งกลุ่มนักเรียนคละความสามารถ (เก่ง-กลาง-อ่อน) กลุ่มละ 4-5 คน</p>
+                                <p>• <b>Mission:</b> ตัวแทนกลุ่มกดเข้าเมนู <b>"ภารกิจกลุ่ม (Group Challenge)"</b> ในนวัตกรรม ระบบจะสุ่มโจทย์ปัญหา (เช่น การหยิบไพ่, การทอดลูกเต๋า 2 ลูก, การสุ่มเลือกกรรมการ)</p>
+                                <p>• <b>Action:</b> สมาชิกในกลุ่มต้องช่วยกันวิเคราะห์หา แซมเปิลสเปซ \( n(S) \) และ เหตุการณ์ที่สนใจ \( n(E) \) เพื่อคำนวณหาความน่าจะเป็นลงในกระดานไวท์บอร์ดขนาดเล็ก</p>
+                                <p>• <b>Gamification:</b> กลุ่มที่ชูคำตอบถูกต้องและอธิบายวิธีคิดได้เร็วที่สุด 3 อันดับแรก จะได้รับเหรียญรางวัลสะสมในระบบ</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Explanation -->
+                        <div class="relative pl-8 border-l-2 border-green-200">
+                            <div class="absolute -left-[17px] top-0 bg-green-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">3</div>
+                            <h4 class="font-bold text-gray-800 font-prompt text-lg">ขั้นอธิบายและลงข้อสรุป (Explanation) <span class="text-xs bg-gray-200 px-2 py-1 rounded ml-2 text-gray-600">20 นาที</span></h4>
+                            <div class="mt-2 text-gray-600 text-sm space-y-2">
+                                <span class="inline-block bg-teal-100 text-teal-700 text-xs px-2 py-1 rounded font-bold mb-1">[STAD Phase: Presentation]</span>
+                                <p>• <b>Debrief:</b> ครูดึงโจทย์ข้อที่มีความซับซ้อน หรือข้อที่นักเรียนตอบผิดบ่อย ขึ้นมาแสดงบนจอโปรเจคเตอร์</p>
+                                <p>• <b>Correction:</b> ครูแก้ไขความเข้าใจคลาดเคลื่อน (Misconception) เช่น การนับสมาชิกซ้ำซ้อน หรือการลืมใช้กฎการคูณ</p>
+                                <p>• <b>Tactics:</b> เชิญตัวแทนกลุ่มที่ตอบถูกและได้คะแนนสูงสุด ออกมาแชร์ "เทคนิคลัด" ในการมองโจทย์ โดยเฉพาะการใช้สูตรการจัดหมู่ \( \binom{n}{r} \) เข้ามาช่วยลดเวลาในการแจกแจงสมาชิก</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 4 -->
+                        <div class="relative pl-8 border-l-2 border-green-200">
+                            <div class="absolute -left-[17px] top-0 bg-green-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">4</div>
+                            <h4 class="font-bold text-gray-800 font-prompt text-lg">ขั้นขยายความรู้ (Elaboration) <span class="text-xs bg-gray-200 px-2 py-1 rounded ml-2 text-gray-600">25 นาที</span></h4>
+                            <div class="mt-2 text-gray-600 text-sm space-y-2">
+                                <span class="inline-block bg-teal-100 text-teal-700 text-xs px-2 py-1 rounded font-bold mb-1">[STAD Phase: Quiz & Accountability] กิจกรรม: The Final Bet (รอบสอบเดี่ยว)</span>
+                                <p>• <b>Peer Support Rule:</b> ครูให้เวลา 5 นาทีแรก ให้สมาชิกในกลุ่ม "ติวเข้ม" ทบทวนสูตรและวิธีคิดให้เพื่อนที่ยังไม่เข้าใจ (Peer Tutoring)</p>
+                                <p>• <b>Individual Test:</b> เข้าสู่โหมดทดสอบรายบุคคล ระบบจะสุ่มชุดโจทย์ความน่าจะเป็น (ตัวเลขและสถานการณ์ไม่ซ้ำกัน) ให้นักเรียนแต่ละคนบนสมาร์ทโฟน</p>
+                                <p>• <b>Challenge:</b> นักเรียนทำข้อสอบ 10 ข้อ ภายในเวลา 15 นาที โดยห้ามปรึกษากันในขั้นตอนนี้ เพื่อวัดความรับผิดชอบส่วนบุคคล (Individual Accountability)</p>
+                            </div>
+                        </div>
+
+                         <!-- Step 5 -->
+                         <div class="relative pl-8 border-l-2 border-green-200">
+                            <div class="absolute -left-[17px] top-0 bg-green-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">5</div>
+                            <h4 class="font-bold text-gray-800 font-prompt text-lg">ขั้นประเมินผล (Evaluation) <span class="text-xs bg-gray-200 px-2 py-1 rounded ml-2 text-gray-600">15 นาที</span></h4>
+                            <div class="mt-2 text-gray-600 text-sm space-y-2">
+                                <span class="inline-block bg-teal-100 text-teal-700 text-xs px-2 py-1 rounded font-bold mb-1">[STAD Phase: Recognition]</span>
+                                <p>• <b>Scoring:</b> นวัตกรรมนำคะแนนการสอบรายบุคคลของทุกคนในกลุ่ม ไปเทียบกับคะแนนฐานเดิม เพื่อคำนวณออกมาเป็น "คะแนนพัฒนาการ (Improvement Score)" ของกลุ่ม</p>
+                                <p>• <b>Awards:</b> ครูประกาศรายชื่อกลุ่ม "Super Team" (กลุ่มที่มีคะแนนพัฒนาการสูงสุดตามเกณฑ์ STAD) พร้อมมอบเกียรติบัตรดิจิทัลและรางวัลเสริมแรงบวก</p>
+                                <p>• <b>Reflection:</b> นักเรียนร่วมกันสรุปหลักการของความน่าจะเป็น และความรู้สึกที่ได้เรียนรู้จากการทำงานเป็นทีม</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: Post Lesson Reflection -->
+        <section class="mt-8 bg-white p-6 rounded-xl shadow-lg border-t-4 border-green-500 break-inside-avoid">
+            <h3 class="font-bold text-xl text-gray-800 mb-4 font-prompt flex items-center">
+                <i class="fa-solid fa-clipboard-check text-green-600 mr-2"></i> บันทึกหลังการจัดการเรียนรู้ (สำหรับครูผู้สอน)
+            </h3>
+            
+            <form id="reflectionForm" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Hidden Fields for Metadata -->
+                <input type="hidden" name="teacher" value="นางสาวศุภนุช มะณีศรี">
+                <input type="hidden" name="subject" value="คณิตศาสตร์เพิ่มเติม">
+                <input type="hidden" name="date" id="currentDate">
+
+                <!-- 1. สถิติการเข้าเรียนและผลการประเมิน -->
+                <div class="md:col-span-2 bg-gray-50 p-5 rounded-lg border border-gray-200 shadow-sm">
+                    <label class="block text-sm font-bold text-green-700 mb-4 border-b border-green-200 pb-2">
+                        <i class="fa-solid fa-chart-pie mr-2"></i> 1. สถิติการเข้าเรียน และผลสัมฤทธิ์ทางการเรียน
+                    </label>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+                        <!-- ส่วนเข้าเรียน -->
+                        <div>
+                            <label class="block text-[11px] sm:text-xs font-bold text-gray-600 mb-1">นักเรียนทั้งหมด (คน)</label>
+                            <input type="number" id="totalStudents" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-green-500 focus:outline-none" min="0" oninput="calculateStats()" placeholder="0">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] sm:text-xs font-bold text-blue-600 mb-1">เข้าเรียน (คน)</label>
+                            <input type="number" id="attendedStudents" class="w-full p-2 border border-blue-300 rounded focus:ring-2 focus:ring-blue-500 focus:outline-none" min="0" oninput="calculateStats()" placeholder="0">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] sm:text-xs font-bold text-red-500 mb-1">ขาดเรียน (คน)</label>
+                            <input type="number" id="absentStudents" class="w-full p-2 border border-red-200 bg-red-50 text-red-700 rounded font-bold cursor-not-allowed" readonly placeholder="0">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] sm:text-xs font-bold text-emerald-600 mb-1">ร้อยละเข้าเรียน</label>
+                            <input type="text" id="attendancePercent" class="w-full p-2 border border-emerald-200 bg-emerald-50 text-emerald-700 rounded font-bold cursor-not-allowed" readonly placeholder="0%">
+                        </div>
+
+                        <!-- ส่วนประเมินผล -->
+                        <div class="col-start-1">
+                            <label class="block text-[11px] sm:text-xs font-bold text-gray-600 mb-1" title="อ้างอิงจากจำนวนคนเข้าเรียน">ประเมินทั้งหมด</label>
+                            <input type="number" id="evalTotalStudents" class="w-full p-2 border border-gray-200 bg-gray-100 text-gray-600 rounded font-bold cursor-not-allowed" readonly placeholder="0">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] sm:text-xs font-bold text-green-600 mb-1">ผ่านเกณฑ์ (คน)</label>
+                            <input type="number" id="passedStudents" class="w-full p-2 border border-green-300 rounded focus:ring-2 focus:ring-green-500 focus:outline-none" min="0" oninput="calculateStats()" placeholder="0">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] sm:text-xs font-bold text-orange-500 mb-1">ไม่ผ่าน (คน)</label>
+                            <input type="number" id="failedStudents" class="w-full p-2 border border-orange-200 bg-orange-50 text-orange-700 rounded font-bold cursor-not-allowed" readonly placeholder="0">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] sm:text-xs font-bold text-emerald-600 mb-1">ร้อยละผ่านเกณฑ์</label>
+                            <input type="text" id="passedPercent" class="w-full p-2 border border-emerald-200 bg-emerald-50 text-emerald-700 rounded font-bold cursor-not-allowed" readonly placeholder="0%">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 mb-1">บันทึกผลสัมฤทธิ์เพิ่มเติม</label>
+                        <textarea id="resultNote" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none h-16 resize-none text-sm" placeholder="เช่น นักเรียนที่ขาดเรียนได้มอบหมายงานชดเชยแล้ว..."></textarea>
+                    </div>
+                </div>
+
+                <div class="space-y-2">
+                    <label class="block text-sm font-bold text-gray-700">2. ปัญหาและอุปสรรค</label>
+                    <textarea name="problems" id="problems" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none h-32 resize-none" placeholder="เช่น นักเรียนบางคนยังสับสนการใช้ P(n,r) กับ C(n,r)..."></textarea>
+                </div>
+
+                <div class="space-y-2">
+                    <label class="block text-sm font-bold text-gray-700">3. ข้อเสนอแนะ / แนวทางแก้ไข</label>
+                    <textarea name="suggestions" id="suggestions" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none h-32 resize-none" placeholder="เช่น สร้างแบบฝึกหัดทบทวนพื้นฐานเรื่องแฟกทอเรียลให้เพิ่มเติม..."></textarea>
+                </div>
+
+                <div class="space-y-2 flex flex-col justify-end">
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 text-sm text-gray-500 mb-2">
+                        <i class="fa-solid fa-info-circle mr-1"></i> ข้อมูลจะถูกส่งไปยัง Google Sheets (Sheet 1: บันทึกหลังสอน)
+                    </div>
+                    <button type="button" onclick="submitToSheet()" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-lg shadow transition transform active:scale-95 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-paper-plane"></i> บันทึกข้อมูลเข้าระบบ
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Section 2: Supervision Log (New Feature) -->
+        <section class="mt-8 bg-white p-6 rounded-xl shadow-lg border-t-4 border-emerald-500 break-inside-avoid mb-6">
+            <h3 class="font-bold text-xl text-gray-800 mb-4 font-prompt flex items-center">
+                <i class="fa-solid fa-user-check text-emerald-600 mr-2"></i> บันทึกและข้อเสนอแนะจากผู้นิเทศ (Supervision Log)
+            </h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Form Input Area -->
+                <div class="md:col-span-2 space-y-4">
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-1">ชื่อผู้นิเทศการสอน</label>
+                        <input type="text" id="supervisorName" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:outline-none" placeholder="ระบุชื่อ-นามสกุล">
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">ตำแหน่ง</label>
+                            <input type="text" id="supervisorPosition" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:outline-none" placeholder="เช่น ผู้อำนวยการ / หัวหน้ากลุ่มสาระฯ">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">วิทยฐานะ</label>
+                            <input type="text" id="supervisorLevel" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:outline-none" placeholder="เช่น ชำนาญการพิเศษ / เชี่ยวชาญ">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-1">ข้อคิดเห็น / ข้อเสนอแนะเพิ่มเติม</label>
+                        <textarea id="supervisorComment" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:outline-none h-32 resize-none" placeholder="ระบุข้อเสนอแนะสำหรับการปรับปรุงแผนการสอน..."></textarea>
+                    </div>
+                    <button type="button" onclick="submitSupervision()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-6 rounded-lg shadow transition flex items-center gap-2">
+                        <i class="fa-solid fa-save"></i> บันทึกผลการนิเทศ
+                    </button>
+                    <p class="text-xs text-gray-400 mt-2">*ข้อมูลจะถูกส่งไปยัง Google Sheets (Sheet 2: การนิเทศ)</p>
+                </div>
+
+                <!-- Summary & Fetch Area -->
+                <div class="md:col-span-1 bg-emerald-50 p-4 rounded-lg border border-emerald-100 flex flex-col relative">
+                    <h4 class="font-bold text-emerald-800 mb-2 border-b border-emerald-200 pb-2">สรุปผลการนิเทศ</h4>
+                    
+                    <!-- Hidden Content (Visible only after auth) -->
+                    <div id="teacherOnlyArea" class="hidden flex-1 flex-col">
+                        <div id="supervisionSummaryArea" class="flex-1 overflow-y-auto max-h-60 text-sm text-gray-600 space-y-2 mb-4">
+                            <p class="text-gray-400 italic text-center mt-4">กำลังดึงข้อมูล...</p>
+                        </div>
+                        <button type="button" onclick="fetchSupervisionSummary()" class="w-full bg-white text-emerald-600 border border-emerald-600 hover:bg-emerald-100 font-bold py-2 rounded-lg transition text-sm">
+                            <i class="fa-solid fa-sync mr-1"></i> ดึงสรุปข้อมูลล่าสุด
+                        </button>
+                    </div>
+
+                    <!-- Lock Screen -->
+                    <div id="lockScreen" class="flex-1 flex flex-col items-center justify-center py-6 text-center h-full">
+                        <i class="fa-solid fa-lock text-4xl text-emerald-300 mb-3"></i>
+                        <p class="text-sm text-gray-500 mb-4">ส่วนนี้สงวนไว้<br>สำหรับครูผู้สอนเท่านั้น</p>
+                        <button type="button" onclick="unlockTeacherArea()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded-lg shadow transition text-sm flex items-center gap-2">
+                            <i class="fa-solid fa-key"></i> ปลดล็อคดูข้อมูล
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Script for Logic -->
+    <script>
+        // Set Current Date
+        document.getElementById('currentDate').value = new Date().toLocaleDateString('th-TH');
+
+        // Config Variables (Updated to target App Script)
+        const HARDCODED_URL = 'https://script.google.com/macros/s/AKfycbxTCYXLYv60nQlnM0vqp0N-omqom_LX5zvrguQcIbrLnsf62SkYJuBQIxjR5g5qKyzisw/exec';
+        
+        let REFLECTION_SCRIPT_URL = HARDCODED_URL;
+        let SUPERVISION_SCRIPT_URL = HARDCODED_URL;
+
+        // --- ฟังก์ชันคำนวณสถิติ ---
+        function calculateStats() {
+            const total = parseInt(document.getElementById('totalStudents').value) || 0;
+            const attended = parseInt(document.getElementById('attendedStudents').value) || 0;
+            
+            // คำนวณการเข้าเรียน
+            let absent = total - attended;
+            if (absent < 0) absent = 0;
+            document.getElementById('absentStudents').value = total > 0 ? absent : '';
+            
+            let attPercent = total > 0 ? ((attended / total) * 100).toFixed(2) : 0;
+            document.getElementById('attendancePercent').value = total > 0 ? `${attPercent}%` : '';
+
+            // อัปเดตฐานจำนวนคนประเมิน (อิงจากคนเข้าเรียน)
+            document.getElementById('evalTotalStudents').value = attended > 0 ? attended : '';
+
+            // คำนวณการผ่านเกณฑ์
+            const passed = parseInt(document.getElementById('passedStudents').value) || 0;
+            let failed = attended - passed;
+            if (failed < 0) failed = 0;
+            document.getElementById('failedStudents').value = attended > 0 ? failed : '';
+
+            let passPercent = attended > 0 ? ((passed / attended) * 100).toFixed(2) : 0;
+            document.getElementById('passedPercent').value = attended > 0 ? `${passPercent}%` : '';
+        }
+
+        // --- Logic บันทึกหลังสอน ---
+        function submitToSheet() {
+            // ดึงค่าสถิติ
+            const total = document.getElementById('totalStudents').value || 0;
+            const attended = document.getElementById('attendedStudents').value || 0;
+            const absent = document.getElementById('absentStudents').value || 0;
+            const attPercent = document.getElementById('attendancePercent').value || '0%';
+            const passed = document.getElementById('passedStudents').value || 0;
+            const failed = document.getElementById('failedStudents').value || 0;
+            const passPercent = document.getElementById('passedPercent').value || '0%';
+            const note = document.getElementById('resultNote').value || '-';
+
+            // รวบรวมข้อมูลเป็น Text เดียวเพื่อส่งเข้า Google Sheet ในคอลัมน์ Result อย่างสวยงาม
+            const combinedResult = `สถิติเข้าเรียน: ทั้งหมด ${total} คน | เข้าเรียน ${attended} คน | ขาดเรียน ${absent} คน (${attPercent})\nสถิติผ่านเกณฑ์: ประเมิน ${attended} คน | ผ่าน ${passed} คน | ไม่ผ่าน ${failed} คน (${passPercent})\nเพิ่มเติม: ${note}`;
+
+            const problems = document.getElementById('problems').value;
+            const suggestions = document.getElementById('suggestions').value;
+
+            if(!REFLECTION_SCRIPT_URL || REFLECTION_SCRIPT_URL === '[PUT_YOUR_SCRIPT_URL_HERE]') {
+                Swal.fire('แจ้งเตือน', 'กรุณาตั้งค่า URL สำหรับบันทึกหลังสอนในโค้ดก่อนครับ', 'warning');
+                return;
+            }
+
+            Swal.fire({ title: 'กำลังบันทึก...', didOpen: () => Swal.showLoading() });
+
+            const formData = new FormData();
+            formData.append('type', 'reflection');
+            formData.append('teacher', 'นางสาวศุภนุช มะณีศรี');
+            formData.append('subject', 'คณิตศาสตร์เพิ่มเติม');
+            formData.append('date', new Date().toLocaleDateString('th-TH'));
+            formData.append('result', combinedResult);
+            formData.append('problems', problems);
+            formData.append('suggestions', suggestions);
+
+            fetch(REFLECTION_SCRIPT_URL, { method: 'POST', body: formData, mode: 'no-cors' })
+            .then(() => {
+                Swal.fire('สำเร็จ', 'บันทึกหลังสอนเรียบร้อยแล้ว', 'success');
+            })
+            .catch(err => Swal.fire('Error', 'เกิดข้อผิดพลาดในการส่งข้อมูล', 'error'));
+        }
+
+        // --- Logic การนิเทศ ---
+        function submitSupervision() {
+            const name = document.getElementById('supervisorName').value;
+            const position = document.getElementById('supervisorPosition').value;
+            const level = document.getElementById('supervisorLevel').value;
+            const comment = document.getElementById('supervisorComment').value;
+
+            if(!SUPERVISION_SCRIPT_URL || SUPERVISION_SCRIPT_URL === '[PUT_YOUR_SCRIPT_URL_HERE]') {
+                Swal.fire('แจ้งเตือน', 'กรุณาตั้งค่า URL สำหรับการนิเทศในโค้ดก่อนครับ', 'warning');
+                return;
+            }
+            if(!name || !comment) {
+                Swal.fire('แจ้งเตือน', 'กรุณากรอกชื่อผู้นิเทศและข้อเสนอแนะ', 'warning');
+                return;
+            }
+
+            Swal.fire({ title: 'กำลังส่งข้อมูล...', didOpen: () => Swal.showLoading() });
+
+            const formData = new FormData();
+            formData.append('type', 'supervision');
+            formData.append('supervisor', name);
+            formData.append('position', position);
+            formData.append('level', level);
+            formData.append('comment', comment);
+            formData.append('date', new Date().toLocaleDateString('th-TH'));
+
+            fetch(SUPERVISION_SCRIPT_URL, { method: 'POST', body: formData, mode: 'no-cors' })
+            .then(() => {
+                Swal.fire('สำเร็จ', 'บันทึกผลการนิเทศเรียบร้อยแล้ว', 'success');
+                document.getElementById('supervisorName').value = '';
+                document.getElementById('supervisorPosition').value = '';
+                document.getElementById('supervisorLevel').value = '';
+                document.getElementById('supervisorComment').value = '';
+                
+                // Refresh data if the area is unlocked
+                if(!document.getElementById('teacherOnlyArea').classList.contains('hidden')){
+                    fetchSupervisionSummary(false);
+                }
+            })
+            .catch(err => Swal.fire('Error', 'เกิดข้อผิดพลาดในการส่งข้อมูล', 'error'));
+        }
+
+        // --- Logic ดึงสรุปผล ---
+        function fetchSupervisionSummary(showLoading = true) {
+            if(!SUPERVISION_SCRIPT_URL || SUPERVISION_SCRIPT_URL === '[PUT_YOUR_SCRIPT_URL_HERE]') {
+                if(showLoading) {
+                    Swal.fire('แจ้งเตือน', 'กรุณานำ URL Script ของคุณมาใส่ในโค้ดก่อน', 'warning');
+                }
+                return;
+            }
+
+            const fetchData = () => {
+                fetch(SUPERVISION_SCRIPT_URL)
+                    .then(response => response.json())
+                    .then(data => {
+                        const area = document.getElementById('supervisionSummaryArea');
+                        if (data && data.length > 0) {
+                            area.innerHTML = '';
+                            data.forEach(item => {
+                                const dateStr = item.date ? item.date : new Date(item.timestamp).toLocaleDateString('th-TH');
+                                let positionText = item.position ? item.position : '';
+                                let levelText = item.level ? item.level : '';
+                                let detailText = [positionText, levelText].filter(Boolean).join(' | ');
+
+                                area.innerHTML += `
+                                    <div class="bg-white p-2 rounded border border-gray-200 shadow-sm text-xs mb-2">
+                                        <p class="font-bold text-emerald-700">${item.supervisor}</p>
+                                        ${detailText ? `<p class="text-xs text-emerald-500 mb-1">${detailText}</p>` : ''}
+                                        <p class="text-gray-600">"${item.comment}"</p>
+                                        <span class="text-gray-400 text-[10px]">${dateStr}</span>
+                                    </div>
+                                `;
+                            });
+                        } else {
+                            area.innerHTML = '<p class="text-gray-400 italic text-center mt-4">ยังไม่มีข้อมูลการนิเทศ</p>';
+                        }
+                    })
+                    .catch(err => {
+                        console.error('Fetch error:', err);
+                        const area = document.getElementById('supervisionSummaryArea');
+                        area.innerHTML = '<p class="text-red-400 text-xs text-center mt-4">ไม่สามารถดึงข้อมูลได้ โปรดตรวจสอบการตั้งค่า App Script ของคุณ</p>';
+                    });
+            };
+
+            if(showLoading) {
+                Swal.fire({ title: 'กำลังดึงข้อมูล...', timer: 1000, didOpen: () => Swal.showLoading() }).then(() => {
+                    fetchData();
+                });
+            } else {
+                fetchData();
+            }
+        }
+
+        // --- ฟังก์ชันปลดล็อคดูข้อมูลการนิเทศสำหรับครู ---
+        function unlockTeacherArea() {
+            Swal.fire({
+                title: 'ยืนยันตัวตนครูผู้สอน',
+                input: 'password',
+                inputLabel: 'รหัสผ่านเริ่มต้นคือ: 1234',
+                inputPlaceholder: 'กรอกรหัสผ่าน...',
+                showCancelButton: true,
+                confirmButtonText: 'ตกลง',
+                cancelButtonText: 'ยกเลิก',
+                confirmButtonColor: '#059669', // Emerald 600
+                inputValidator: (value) => {
+                    if (!value) {
+                        return 'กรุณาระบุรหัสผ่าน!'
+                    }
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    if (result.value === '1234') { 
+                        document.getElementById('lockScreen').classList.add('hidden');
+                        document.getElementById('teacherOnlyArea').classList.remove('hidden');
+                        document.getElementById('teacherOnlyArea').classList.add('flex');
+                        
+                        fetchSupervisionSummary(true);
+                        
+                        Swal.fire({
+                            title: 'ปลดล็อคสำเร็จ',
+                            icon: 'success',
+                            timer: 1500,
+                            showConfirmButton: false
+                        });
+                    } else {
+                        Swal.fire('รหัสผ่านไม่ถูกต้อง', 'ไม่สามารถเข้าถึงข้อมูลได้', 'error');
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
